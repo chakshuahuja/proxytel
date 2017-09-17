@@ -13,53 +13,27 @@ import s from './ViewConnections.css';
 
 class ViewConnections extends React.Component {
   render() {
-    const data = [
-      {
-        to_pn: '+16505672212',
-        to_virtual_pn: '+16508962222',
-        from_pn: '+16506729999',
-        from_virtual_pn: '+16593238888',
-        recording: 'dummy.wav',
-        insights: 'dummy.png',
-      },
-      {
-        to_pn: '+16505671111',
-        to_virtual_pn: '+16508962223',
-        from_pn: '+16506729999',
-        from_virtual_pn: '+1659323333',
-        recording: 'dummy2.wav',
-        insights: 'dummy2.png',
-      },
-      {
-        to_pn: '+16505671211',
-        to_virtual_pn: '+14208962223',
-        from_pn: '+16503229999',
-        from_virtual_pn: '+1639323333',
-        recording: 'dummy3.wav',
-        insights: 'dummy3.png',
-      },
-    ];
     const rows = [];
-    data.forEach(item => {
+    this.props.data["connections"][0].forEach(item => {
       rows.push(
         <tr>
           <td>
-            {item.to_pn}
+            {item.userPhone.msisdn}
           </td>
           <td>
-            {item.to_virtual_pn}
+            {item.userVirtualPhone.msisdn}
           </td>
           <td>
-            {item.from_pn}
+            {item.agentPhone.msisdn}
           </td>
           <td>
-            {item.from_virtual_pn}
+            {item.agenVirtualPhone.msisdn}
+          </td>
+          <td>
+            {item.context}
           </td>
           <td>
             {item.recording}
-          </td>
-          <td>
-            {item.insights}
           </td>
         </tr>,
       );

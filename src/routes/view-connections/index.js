@@ -10,16 +10,19 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import ViewConnections from './ViewConnections';
+import fetch from 'isomorphic-fetch';
 
 const title = 'View Connections';
 
-function action() {
+async function action({fetch}) {
+  const resp = await fetch('http://localhost:3000/connections');
+  const conns = await resp.json();
+  
   return {
-    chunks: ['view-connections'],
     title,
     component: (
       <Layout>
-        <ViewConnections title={title} />
+        <ViewConnections title={title} data={conns}/>
       </Layout>
     ),
     status: 404,
