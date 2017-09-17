@@ -20,20 +20,15 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>Introducing the ProxyTel plaftform</h1>
-          <img
-              src={IntroImg}
-              width="500"
-              height="308"
-              alt="React"
-            />
+          <img src={IntroImg} width="500" height="308" alt="React" />
           <Link className={s.link} to="/register-app">
             <h2>Let's Get Started</h2>
           </Link>
           <h3> Already registered? Connect to look at the insights </h3>
-          <Link className={s.link} to="/connections">
+          <Link className={s.link} to="/view-connections">
             <h3>View Open Connections</h3>
           </Link>
-          <br/>
+          <br />
         </div>
       </div>
     );
