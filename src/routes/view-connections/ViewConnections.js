@@ -10,8 +10,22 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ViewConnections.css';
+import InspectImg from './inspect.png';
 
 class ViewConnections extends React.Component {
+  download() {
+    // fake server request, getting the file url as response
+    setTimeout(() => {
+      const response = {
+        file: 'https://imgur.com/a/9jNNw',
+      };
+      // server sent the url to the file!
+      // now, let's download:
+      window.location.href = response.file;
+      // you could also do:
+      // window.open(response.file);
+    }, 100);
+  }
   render() {
     const rows = [];
     this.props.data["connections"][0].forEach(item => {
@@ -30,10 +44,9 @@ class ViewConnections extends React.Component {
             {item.agenVirtualPhone.msisdn}
           </td>
           <td>
-            {item.context}
+            <button onClick={this.download}>Download Recording </button>
           </td>
           <td>
-            {item.recording}
           </td>
         </tr>,
       );
