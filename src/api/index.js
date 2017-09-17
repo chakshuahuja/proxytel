@@ -1,14 +1,56 @@
 import express from 'express';
 import config from '../config';
 import VoiceLib from './voicelib';
+import { User, UserLogin, UserApp, Connection } from '../data/models';
 
 const router = express.Router();
 const voicelib = new VoiceLib(config.nexemo);
 router.get('/connections', (req, res) => {
+  const connection = {
+    userPhone: '16507984482',
+    agentPhone: '16509960456',
+    userVirtualPhone: 'blank',
+    agenVirtualPhone: 'blank',
+    context: 'c123456',
+    recordings: [
+
+    ]
+  }
   res.json({
-    status: 'OK',
+    connections: [connection],
   });
 });
+
+router.get('/newapp', async (req, res) => {
+  const user = req.user;
+  console.log('user', user);
+
+  if (!user) {
+    res.send(403, 'No user');
+  }
+  const uapp =  UserApp.build({
+    name: 'Yolo',
+    'user': []
+  });
+  uapp.setUser(req.user);
+  await User.addUserApps([uapp]);
+  console.log('uapp', uapp);
+  res.send('OK');
+});
+router.get('/apps', async (req, res) => {
+  console.log('user', req.user);
+  const u = await User.find({
+
+    where: {'id': req.user.id},
+    // include: [{
+    //   model: UserApp,
+    //   as: 'apps',
+    // }]
+  });
+
+  console.log('u', u);
+  res.send('Ok');
+})
 
 router.get('/proxy-call', (req, res) => {
   const from = req.query.from;

@@ -6,7 +6,7 @@ const UserApp = Model.define(
   {
     name: {
       type: DataType.STRING,
-    }
+    },
   }
 );
 export default UserApp;

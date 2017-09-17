@@ -14,7 +14,7 @@ const Connection = Model.define(
     },
     toPhone: {
       type: DataType.STRING,
-    }
+    },
     context: {
       type: DataType.STRING,
     }

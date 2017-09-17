@@ -9,7 +9,9 @@
 
 import sequelize from '../sequelize';
 import User from './User';
+
 import UserApp from './UserApp';
+import Connection from './Connection';
 import UserLogin from './UserLogin';
 import UserClaim from './UserClaim';
 import UserProfile from './UserProfile';
@@ -42,6 +44,7 @@ User.hasMany(UserApp, {
   onDelete: 'cascade',
 });
 
+
 UserApp.hasMany(Connection, {
   foreignKey: 'appName',
   as: 'connections',
@@ -54,4 +57,4 @@ function sync(...args) {
 }
 
 export default { sync };
-export { User, UserLogin, UserClaim, UserProfile };
+export { User, UserLogin, UserClaim, UserProfile, UserApp, Connection};
