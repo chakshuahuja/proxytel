@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import Link from '../../components/Link';
+import IntroImg from './intro.png';
 
 class Home extends React.Component {
   render() {
@@ -19,11 +20,20 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>Introducing the ProxyTel plaftform</h1>
-
-          <h2>Let's Get Started Then</h2>
+          <img
+              src={IntroImg}
+              width="500"
+              height="308"
+              alt="React"
+            />
           <Link className={s.link} to="/register-app">
-            Register
+            <h2>Let's Get Started</h2>
           </Link>
+          <h3> Already registered? Connect to look at the insights </h3>
+          <Link className={s.link} to="/connections">
+            <h3>View Open Connections</h3>
+          </Link>
+          <br/>
         </div>
       </div>
     );
