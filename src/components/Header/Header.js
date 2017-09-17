@@ -33,7 +33,9 @@ class Header extends React.Component {
           </Link>
           <div className={s.banner}>
             <h1 className={s.bannerTitle}>ProxyTel</h1>
-            <p className={s.bannerDesc}>Communications made easy, secure and hassle-free</p>
+            <p className={s.bannerDesc}>
+              Communications made easy, secure and hassle-free
+            </p>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ async function action({ fetch }) {
     title: 'React Starter Kit',
     component: (
       <Layout>
-        <Home/>
+        <Home />
       </Layout>
     ),
   };

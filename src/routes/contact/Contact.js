@@ -24,7 +24,8 @@ class Contact extends React.Component {
           <h1>
             {this.props.title}
           </h1>
-          <p>...</p>
+          <p>Siddhant Sanyam (siddhant3s@gmail.com) </p>
+          <p>Chakshu Ahuja (ahuja.chaks@gmail.com) </p>
         </div>
       </div>
     );
