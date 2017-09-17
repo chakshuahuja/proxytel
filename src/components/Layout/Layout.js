@@ -16,7 +16,7 @@ import normalizeCss from 'normalize.css';
 import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
-import MainPage from '../MainPage';
+
 import Footer from '../Footer';
 
 class Layout extends React.Component {
@@ -29,7 +29,7 @@ class Layout extends React.Component {
       <div>
         <Header />
         {this.props.children}
-        <MainPage />
+        
         <Footer />
       </div>
     );

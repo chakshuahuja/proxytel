@@ -11,6 +11,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
+import Link from '../../components/Link';
 
 class Home extends React.Component {
   render() {
@@ -18,6 +19,11 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>Introducing the ProxyTel plaftform</h1>
+          
+          <h2>Let's Get Started Then</h2>
+          <Link className={s.link} to="/register-app">
+            Register
+          </Link>
         </div>
       </div>
     );
