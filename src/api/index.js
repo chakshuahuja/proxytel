@@ -1,6 +1,8 @@
 import express from 'express';
 import config from '../config';
 import VoiceLib from './voicelib';
+import speechToText from './watson_apis/speech_to_text';
+
 import { User, UserLogin, UserApp, Connection } from '../data/models';
 var fs = require('fs');
 
@@ -15,7 +17,7 @@ router.get('/connections', (req, res) => {
       agentPhone: c.userB.realNumber,
       userVirtualPhone: c.userA.virtualNumber,
       agenVirtualPhone: c.userB.virtualNumber,
-      context: 'c123456',
+      context: c.context,
       recordings: [],
     };
   });
@@ -73,6 +75,22 @@ router.get('/proxy-call', (req, res) => {
 
 router.post('/event', (req, res) => {
   console.log('event', req.body);
+  if (req.body.status === 'completed') {
+    // const pr = voicelib.getProxyRoute(req.body.from, req.body.to);
+    // if (!pr) {
+    //   return;
+    // }
+
+  }
+  if (req.body.recording_url) {
+//    voicelib.nexmo.files.get(req.body.recording_uuid, (resp) => {
+    const wav = '/tmp/' + req.body.conversation_uuid + '.wav';
+    voicelib.nexmo.files.save(req.body.recording_url, wav, (resp) => {
+      console.log('Saved file ' + wav);
+      speechToText(wav, wav+'.txt');
+
+    });
+  }
 
   res.sendStatus(204);
 });

@@ -2,6 +2,28 @@
 // var Promise = require('bluebird');
 const Nexmo = require('nexmo');
 const promisify = require('bluebird').promisify;
+import fs from 'fs';
+
+const CONV_PATH = '/tmp/conversations';
+
+function storeConversations(conversations) {
+  fs.writeFileSync(CONV_PATH, JSON.stringify(conversations), { flag: 'w' });
+}
+
+function retrieveConversations(conversations) {
+  try {
+  if (fs.existsSync(CONV_PATH)) {
+      const conversations = JSON.parse(fs.readFileSync(CONV_PATH).toString());
+    if (conversations) {
+      return conversations
+    }
+  }
+} catch (ex) {
+  console.log('Failed reading from ' + CONV_PATH);
+  return [];
+}
+  return [];
+}
 /**
  * Create a new VoiceProxy
  */
@@ -13,6 +35,8 @@ const VoiceProxy = function(config) {
     {
       apiKey: this.config.NEXMO_API_KEY,
       apiSecret: this.config.NEXMO_API_SECRET,
+      applicationId: this.config.NEXMO_APP_ID,
+      privateKey: this.config.PRIVATE_KEY,
     },
     {
       debug: this.config.NEXMO_DEBUG,
@@ -23,7 +47,7 @@ const VoiceProxy = function(config) {
   this.provisionedNumbers = [].concat(this.config.PROVISIONED_NUMBERS);
 
   // In progress conversations
-  this.conversations = [];
+  this.conversations = retrieveConversations();
 };
 
 /**
@@ -156,6 +180,7 @@ VoiceProxy.prototype.saveConversation = function(results, context) {
   };
 
   this.conversations.push(conversation);
+  storeConversations(this.conversations);
 
   return conversation;
 };
@@ -240,7 +265,7 @@ VoiceProxy.prototype.getProxyNCCO = function(from, to) {
 
   const textAction = {
     action: 'talk',
-    text: 'Please wait whilst we connect your call',
+    text: 'Connecting your call',
   };
   ncco.push(textAction);
 

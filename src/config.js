@@ -33,6 +33,7 @@ module.exports = {
     NEXMO_API_KEY: '28f97fcf',
     NEXMO_API_SECRET: '05df3f8de21df2c6',
     NEXMO_APP_ID: '836fc01d-01cc-4130-8ce2-30af8afb8052',
+    PRIVATE_KEY: '/Users/siddhant/nexmo_private.key',
     PROVISIONED_NUMBERS: [
       { country: 'US', msisdn: '12016728793' },
       { country: 'US', msisdn: '16239999040' },

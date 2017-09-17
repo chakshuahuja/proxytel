@@ -17,31 +17,38 @@ const params = {
   keywords_threshold: 0.5,
 };
 
-// Create the stream.
-const recognizeStream = speech_to_text.createRecognizeStream(params);
 
-// Pipe in the audio.
-fs
-  .createReadStream('../../../test/resources/angry_sample_audio.wav')
-  .pipe(recognizeStream);
+function speechToText(wav, txt) {
+  // Create the stream.
+  const recognizeStream = speech_to_text.createRecognizeStream(params);
 
-// Pipe out the transcription to a file.
-recognizeStream.pipe(fs.createWriteStream('transcription.txt'));
+  // Pipe in the audio.
+  fs
+    .createReadStream('/Users/siddhant/Desktop/angry_sample_audio.wav')
+    .pipe(recognizeStream);
 
-// Get strings instead of buffers from 'data' events.
-recognizeStream.setEncoding('utf8');
+  // Pipe out the transcription to a file.
+  recognizeStream.pipe(fs.createWriteStream(txt));
 
-// // Listen for events.
-// recognizeStream.on('results', function(event) { onEvent('Results:', event); });
-recognizeStream.on('data', event => {
-  onEvent('Data:', event);
-});
-// recognizeStream.on('error', function(event) { onEvent('Error:', event); });
-// recognizeStream.on('close', function(event) { onEvent('Close:', event); });
-// recognizeStream.on('speaker_labels', function(event) { onEvent('Speaker_Labels:', event); });
+  // Get strings instead of buffers from 'data' events.
+  recognizeStream.setEncoding('utf8');
 
-// Displays events on the console.
-function onEvent(name, event) {
-  // if(name == "Data:")
-  console.log(JSON.stringify(event, null, 2));
+  // // Listen for events.
+  // recognizeStream.on('results', function(event) { onEvent('Results:', event); });
+  recognizeStream.on('data', event => {
+    onEvent('Data:', event);
+  });
+  // recognizeStream.on('error', function(event) { onEvent('Error:', event); });
+  // recognizeStream.on('close', function(event) { onEvent('Close:', event); });
+  // recognizeStream.on('speaker_labels', function(event) { onEvent('Speaker_Labels:', event); });
+
+  // Displays events on the console.
+  function onEvent(name, event) {
+    // if(name == "Data:")
+    console.log(JSON.stringify(event, null, 2));
+  }
+
 }
+
+
+export default speechToText;
