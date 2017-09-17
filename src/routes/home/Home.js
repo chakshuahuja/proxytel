@@ -19,7 +19,7 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>Introducing the ProxyTel plaftform</h1>
-          
+
           <h2>Let's Get Started Then</h2>
           <Link className={s.link} to="/register-app">
             Register

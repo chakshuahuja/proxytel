@@ -33,7 +33,8 @@ const routes = {
     },
     {
       path: '/register-app',
-      load: () => import(/* webpackChunkName: 'register-app' */ './register-app'),
+      load: () =>
+        import(/* webpackChunkName: 'register-app' */ './register-app'),
     },
     {
       path: '/about',

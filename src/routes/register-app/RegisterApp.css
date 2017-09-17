@@ -11,16 +11,19 @@
 
 form {
   text-align: center;
+
   label {
     font-size: 20px;
     font-weight: 6em;
     padding: 7px;
   }
+
   input {
     margin: 4px;
   }
+
   h1 {
-    color: #F70454;
+    color: #f70454;
   }
 }
 
@@ -28,7 +31,7 @@ form {
   width: 200px;
   height: 50px;
   border-radius: 39px;
-  background-color: #F70454;
+  background-color: #f70454;
   color: white;
   margin: 28px;
   font-size: 22px;
