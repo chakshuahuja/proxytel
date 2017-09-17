@@ -97,10 +97,11 @@ VoiceProxy.prototype.reconfigureNumbers = function() {
 VoiceProxy.prototype.createConversation = function(
   userANumber,
   userBNumber,
+  context,
   cb,
 ) {
   this.checkNumbers(userANumber, userBNumber)
-    .then(this.saveConversation.bind(this))
+    .then(res => this.saveConversation(res, context))
     .then(this.sendSMS.bind(this))
     .then(conversation => {
       cb(null, conversation);
@@ -126,7 +127,7 @@ VoiceProxy.prototype.checkNumbers = function(userANumber, userBNumber) {
 /**
  * Store the conversation information.
  */
-VoiceProxy.prototype.saveConversation = function(results) {
+VoiceProxy.prototype.saveConversation = function(results, context) {
   const userAResult = results[0];
   const userANumber = {
     msisdn: userAResult.international_format_number,
@@ -151,6 +152,7 @@ VoiceProxy.prototype.saveConversation = function(results) {
       realNumber: userBNumber,
       virtualNumber: this.provisionedNumbers[1],
     },
+    context: context,
   };
 
   this.conversations.push(conversation);
@@ -242,6 +244,11 @@ VoiceProxy.prototype.getProxyNCCO = function(from, to) {
   };
   ncco.push(textAction);
 
+  const recordAction = {
+    'action': 'record',
+    'fromat': 'wav',
+  };
+  ncco.push(recordAction);
   const connectAction = {
     action: 'connect',
     from: proxyRoute.from.virtualNumber.msisdn,

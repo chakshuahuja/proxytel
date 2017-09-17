@@ -2,25 +2,36 @@ import express from 'express';
 import config from '../config';
 import VoiceLib from './voicelib';
 import { User, UserLogin, UserApp, Connection } from '../data/models';
+var fs = require('fs');
+
+const APPS = [];
 
 const router = express.Router();
 const voicelib = new VoiceLib(config.nexemo);
 router.get('/connections', (req, res) => {
-  const connection = {
-    userPhone: '16507984482',
-    agentPhone: '16509960456',
-    userVirtualPhone: 'blank',
-    agenVirtualPhone: 'blank',
-    context: 'c123456',
-    recordings: [
-
-    ]
-  }
+  const connections = voicelib.conversations.map(c => {
+    return {
+      userPhone: c.userA.realNumber,
+      agentPhone: c.userB.realNumber,
+      userVirtualPhone: c.userA.virtualNumber,
+      agenVirtualPhone: c.userB.virtualNumber,
+      context: 'c123456',
+      recordings: [],
+    };
+  });
   res.json({
-    connections: [connection],
+    connections: [connections],
   });
 });
-
+router.get('/register-new-app', async (req, res) => {
+  console.log(req.query);
+  const app = {
+    name: req.query.name,
+    description: req.query.description,
+  };
+  APPS.push(app);
+  res.send(200, 'Ok');
+});
 router.get('/newapp', async (req, res) => {
   const user = req.user;
   console.log('user', user);
@@ -66,11 +77,12 @@ router.post('/event', (req, res) => {
   res.sendStatus(204);
 });
 
-router.get('/conversation/start/:userANumber/:userBNumber', (req, res) => {
+router.get('/connection/start/:userANumber/:userBNumber/:context', (req, res) => {
   const userANumber = req.params.userANumber;
   const userBNumber = req.params.userBNumber;
+  const context = req.params.context;
 
-  voicelib.createConversation(userANumber, userBNumber, (err, result) => {
+  voicelib.createConversation(userANumber, userBNumber, context,  (err, result) => {
     if (err) {
       res.status(500).json(err);
     } else {

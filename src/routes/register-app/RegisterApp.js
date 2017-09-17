@@ -24,18 +24,22 @@ class RegisterApp extends React.Component {
   }
   handleSubmit(event) {
     alert(
-      `A name was submitted: ${this.state.value}${this.state.description}${this
-        .state.type}`,
+      `An app was submitted: \n${this.state.value}\n${this.state.description}`,
     );
-    event.preventDefault();
+
     this.clearInput();
+  }
+  onSubmit = () => {
+    this.setState({finalMsg: 'App registered'});
+    this.handleSubmit();
+
   }
 
   render() {
     const { state, ...props } = this.props;
     return (
       <g>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <h1>Register Your App !!</h1>
           <label>
             Application Name:
@@ -71,7 +75,7 @@ class RegisterApp extends React.Component {
             </select>
             <br />
           </label>
-          <input className={s.submitbutton} type="submit" value="Register" />
+          <button className={s.submitbutton} onClick={this.onSubmit}> Register </button>
         </form>
       </g>
     );
