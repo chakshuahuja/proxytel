@@ -18,6 +18,7 @@ import fetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
+import apiRoutes from './api';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -106,6 +107,11 @@ app.use(
     pretty: __DEV__,
   })),
 );
+
+//
+// Register Backend API middleware
+// -----------------------------------------------------------------------------
+app.use(apiRoutes);
 
 //
 // Register server-side rendering middleware

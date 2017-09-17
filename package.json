@@ -8,6 +8,7 @@
   },
   "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
   "dependencies": {
+    "nexmo": "^1.0.0-beta-7",
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",

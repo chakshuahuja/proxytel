@@ -4746,7 +4746,7 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
-jsonwebtoken@^7.3.0, jsonwebtoken@^7.4.1:
+jsonwebtoken@^7.1.9, jsonwebtoken@^7.3.0, jsonwebtoken@^7.4.1:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.4.3.tgz#77f5021de058b605a1783fa1283e99812e645638"
   dependencies:
@@ -5478,6 +5478,13 @@ natural-compare@^1.4.0:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+nexmo@^1.0.0-beta-7:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/nexmo/-/nexmo-1.2.1.tgz#a6a3fe76091c7152a647475681b1cd3e82c42a97"
+  dependencies:
+    jsonwebtoken "^7.1.9"
+    uuid "^2.0.2"
 
 nise@^1.0.1:
   version "1.0.1"
@@ -8261,7 +8268,7 @@ utils-merge@1.0.0, utils-merge@1.x.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.0.tgz#0294fb922bb9375153541c4f7096231f287c8af8"
 
-uuid@^2.0.1:
+uuid@^2.0.1, uuid@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
