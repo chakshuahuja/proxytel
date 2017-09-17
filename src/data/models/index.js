@@ -9,6 +9,7 @@
 
 import sequelize from '../sequelize';
 import User from './User';
+import UserApp from './UserApp';
 import UserLogin from './UserLogin';
 import UserClaim from './UserClaim';
 import UserProfile from './UserProfile';
@@ -33,6 +34,20 @@ User.hasOne(UserProfile, {
   onUpdate: 'cascade',
   onDelete: 'cascade',
 });
+
+User.hasMany(UserApp, {
+  foreignKey: 'userId',
+  as: 'apps',
+  onUpdate: 'cascade',
+  onDelete: 'cascade',
+});
+
+UserApp.hasMany(Connection, {
+  foreignKey: 'appName',
+  as: 'connections',
+  onUpdate: 'cascade',
+  onDelete: 'cascade',
+})
 
 function sync(...args) {
   return sequelize.sync(...args);
