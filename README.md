@@ -17,3 +17,5 @@ ProxyTel allows you to quickly integrate masked phone numbers very easily in you
 6. Still want more? Well, we will transcribe all the customer-driver phone recordings to text and send all to IBM-Watson for sentimental analysis for any harsh conversations which will be flagged to you to take further action.
 
 7. Here, driver can be any other kind of agent. For example, in case of showing homes, it can be the realtor. In apps which connect buyers and sellers (like CraigList), the agent can be the seller.
+
+More details can be found here : https://devpost.com/software/proxytel
